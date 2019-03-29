@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
     .catch(err => {
       res.status(404).json(err)
     })
-    .then(project => {
+    .then(([project]) => {
       res.status(200).json(project)
     })
 })
