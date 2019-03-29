@@ -1,15 +1,15 @@
 const express = require("express")
 const helmet = require("helmet")
 
-const dishesRouter = require("./dishes/router.js")
-const recipesRouter = require("./recipes/router.js")
+const actionsRouter = require("./actions/router.js")
+const projectsRouter = require("./projects/router.js")
 
 const server = express()
 
 server.use(helmet())
 server.use(express.json())
 
-server.use("/api/dishes", dishesRouter)
-server.use("/api/recipes", recipesRouter)
+server.use("/api/actions", actionsRouter)
+server.use("/api/projects", projectsRouter)
 
 module.exports = server
