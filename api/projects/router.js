@@ -36,7 +36,8 @@ router.post("/", (req, res) => {
           })
         })
         .then(([id]) => {
-          getProject(id)
+          getProjects()
+            .where({ id })
             .catch(_err => {
               res.status(500).json({
                 message: "Error retrieving inserted project."
