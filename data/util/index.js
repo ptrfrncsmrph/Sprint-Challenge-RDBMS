@@ -1,27 +1,27 @@
 const knex = require("knex")
 const db = require("../dbConfig")
 
-const getDishes = () => db("dishes")
-const addDish = dish => db("dishes").insert(dish)
-const getDish = id =>
-  db("dishes")
-    .leftJoin("recipes", "dishes.id", "recipes.dish_id")
+const getProjects = () => db("projects")
+const addProject = project => db("projects").insert(project)
+const getProject = id =>
+  db("projects")
+    .leftJoin("actions", "projects.id", "actions.project_id")
     .select(
-      "dishes.id",
-      "dishes.name as dish",
-      knex.raw("group_concat(recipes.name, '%%') as recipes")
+      "projects.id",
+      "projects.name as project",
+      knex.raw("group_concat(actions.name, '%%') as actions")
     )
-    .where({ "dishes.id": id })
-    .map(obj => Object.assign(obj, { recipes: obj.recipes.split("%%") }))
-const getRecipes = () => db("recipes")
-const getRecipe = id => db("recipes").where({ id })
-const addRecipe = recipe => db("recipes").insert(recipe)
+    .where({ "projects.id": id })
+    .map(obj => Object.assign(obj, { actions: obj.actions.split("%%") }))
+const getActions = () => db("actions")
+const getAction = id => db("actions").where({ id })
+const addAction = action => db("actions").insert(action)
 
 module.exports = {
-  getDishes,
-  addDish,
-  getDish,
-  getRecipes,
-  getRecipe,
-  addRecipe
+  getProjects,
+  addProject,
+  getProject,
+  getActions,
+  getAction,
+  addAction
 }
